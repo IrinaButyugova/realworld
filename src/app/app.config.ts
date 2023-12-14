@@ -6,6 +6,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { reducers } from './auth/store/reducers';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
       connectInZone: true
     }),
+    provideHttpClient()
     ]
 };
