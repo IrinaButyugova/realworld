@@ -1,15 +1,17 @@
 import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideStore } from '@ngrx/store';
+import { StoreModule, provideStore, provideState } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
+import { reducers } from './auth/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     provideStore(),
+    provideState('auth', reducers),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -17,5 +19,6 @@ export const appConfig: ApplicationConfig = {
       trace: false,
       traceLimit: 75,
       connectInZone: true
-    })]
+    }),
+    ]
 };
