@@ -10,6 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthService } from './auth/store/services/auth.service';
+import { PersistanceService } from './shared/services/persistance.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
       connectInZone: true
     }),
     provideHttpClient(),
-    AuthService
+    AuthService,
+    PersistanceService
     ]
 };
