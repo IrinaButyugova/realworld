@@ -11,13 +11,14 @@ import { provideEffects } from '@ngrx/effects';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthService } from './auth/store/services/auth.service';
 import { PersistanceService } from './shared/services/persistance.service';
+import { LoginEffect } from './auth/store/effects/login.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     provideStore(),
     provideState('auth', reducers),
-    provideEffects(RegisterEffect),
+    provideEffects(RegisterEffect, LoginEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

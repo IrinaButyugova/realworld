@@ -6,6 +6,7 @@ import { map } from "rxjs/operators";
 import { RegisterRequestInterface } from "../../types/registerRequest.interface";
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
 import { AuthResponseInterface } from "../../types/authResponse.interface";
+import { LoginRequestInterface } from "../../types/loginRequest.interface";
 
 @Injectable()
 export class AuthService{
@@ -20,6 +21,18 @@ export class AuthService{
 
         return this.http
         .post<AuthResponseInterface>(url, data)
-        .pipe(map((response: AuthResponseInterface) => response.user))
+        .pipe(map(this.getUser));
+    }
+
+    login(data: LoginRequestInterface): Observable<CurrentUserInterface>{
+        const url = this.apiUrl + '/users/login';
+
+        return this.http
+        .post<AuthResponseInterface>(url, data)
+        .pipe(map(this.getUser));
+    }
+
+    getUser(response: AuthResponseInterface): CurrentUserInterface{
+        return response.user;
     }
 }
