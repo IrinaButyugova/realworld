@@ -7,12 +7,16 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { reducers } from './auth/store/reducers';
 import { provideHttpClient } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import { RegisterEffect } from './auth/store/effects/register.effect';
+import { AuthService } from './auth/store/services/auth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     provideStore(),
     provideState('auth', reducers),
+    provideEffects(RegisterEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -21,6 +25,7 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
       connectInZone: true
     }),
-    provideHttpClient()
+    provideHttpClient(),
+    AuthService
     ]
 };
