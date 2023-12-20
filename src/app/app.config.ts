@@ -12,13 +12,14 @@ import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthService } from './auth/store/services/auth.service';
 import { PersistanceService } from './shared/services/persistance.service';
 import { LoginEffect } from './auth/store/effects/login.effect';
+import { GetCurrentUserEffect } from './auth/store/effects/getCurrentUser.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     provideStore(),
     provideState('auth', reducers),
-    provideEffects(RegisterEffect, LoginEffect),
+    provideEffects(RegisterEffect, LoginEffect, GetCurrentUserEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
