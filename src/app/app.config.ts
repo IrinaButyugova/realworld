@@ -6,13 +6,14 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { reducers } from './auth/store/reducers';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthService } from './auth/store/services/auth.service';
 import { PersistanceService } from './shared/services/persistance.service';
 import { LoginEffect } from './auth/store/effects/login.effect';
 import { GetCurrentUserEffect } from './auth/store/effects/getCurrentUser.effect';
+import { AuthInterceptor } from './shared/services/authinterceptor.sevice';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -28,8 +29,13 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
       connectInZone: true
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     AuthService,
-    PersistanceService
+    PersistanceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
     ]
 };
