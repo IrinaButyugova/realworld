@@ -14,13 +14,17 @@ import { PersistanceService } from './shared/services/persistance.service';
 import { LoginEffect } from './auth/store/effects/login.effect';
 import { GetCurrentUserEffect } from './auth/store/effects/getCurrentUser.effect';
 import { AuthInterceptor } from './shared/services/authinterceptor.sevice';
+import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
+import { feedReducers } from './shared/modules/feed/store/reducers';
+import { FeedService } from './shared/modules/feed/services/feed.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     provideStore(),
     provideState('auth', reducers),
-    provideEffects(RegisterEffect, LoginEffect, GetCurrentUserEffect),
+    provideState('feed', feedReducers),
+    provideEffects(RegisterEffect, LoginEffect, GetCurrentUserEffect, GetFeedEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -36,6 +40,7 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    FeedService
     ]
 };
