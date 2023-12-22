@@ -22,7 +22,7 @@
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
         <h1>{{ article.title }}</h1>
         <p>{{ article.description }}</p>
-        HERE IS LIST OF TAGS
+        <rw-tag-list [tags]="article.tagList"></rw-tag-list>
     </a>
     </div>
     <rw-pagination [total]="(feed$ | async)?.articlesCount" 
