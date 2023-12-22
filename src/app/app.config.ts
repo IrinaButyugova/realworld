@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { StoreModule, provideStore, provideState } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 
 import { routes } from './app.routes';
 import { reducers } from './auth/store/reducers';
@@ -21,7 +22,7 @@ import { FeedService } from './shared/modules/feed/services/feed.service';
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
-    provideStore(),
+    provideStore({router: routerReducer}),
     provideState('auth', reducers),
     provideState('feed', feedReducers),
     provideEffects(RegisterEffect, LoginEffect, GetCurrentUserEffect, GetFeedEffect),
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
       connectInZone: true
     }),
+    provideRouterStore(),
     provideHttpClient(withInterceptorsFromDi()),
     AuthService,
     PersistanceService,
