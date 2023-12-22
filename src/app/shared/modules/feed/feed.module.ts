@@ -6,9 +6,16 @@ import { FeedService } from "./services/feed.service";
 import { RouterModule } from "@angular/router";
 import { ErrorMessageModule } from "../errorMessage/errorMessage.module";
 import { LoadingModule } from "../loading/loading.module";
+import { PaginationModule } from "../pagination/pagination.module";
 
 @NgModule({
-    imports: [CommonModule, RouterModule, ErrorMessageModule, LoadingModule],
+    imports: [
+        CommonModule, 
+        RouterModule, 
+        ErrorMessageModule, 
+        LoadingModule,
+        PaginationModule
+    ],
     declarations: [FeedComponent],
     exports: [FeedComponent],
     providers: [FeedService]
