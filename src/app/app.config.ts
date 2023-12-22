@@ -18,6 +18,9 @@ import { AuthInterceptor } from './shared/services/authinterceptor.sevice';
 import { GetFeedEffect } from './shared/modules/feed/store/effects/getFeed.effect';
 import { feedReducers } from './shared/modules/feed/store/reducers';
 import { FeedService } from './shared/modules/feed/services/feed.service';
+import { GetPopularTagsEffect } from './shared/modules/popularTags/store/effects/getPopularTags.effect';
+import { popularTagReducers } from './shared/modules/popularTags/store/reducers';
+import { PopularTagsService } from './shared/modules/popularTags/services/popularTags.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -25,7 +28,14 @@ export const appConfig: ApplicationConfig = {
     provideStore({router: routerReducer}),
     provideState('auth', reducers),
     provideState('feed', feedReducers),
-    provideEffects(RegisterEffect, LoginEffect, GetCurrentUserEffect, GetFeedEffect),
+    provideState('popularTags', popularTagReducers),
+    provideEffects(
+      RegisterEffect, 
+      LoginEffect, 
+      GetCurrentUserEffect, 
+      GetFeedEffect,
+      GetPopularTagsEffect
+      ),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -43,6 +53,7 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthInterceptor,
       multi: true
     },
-    FeedService
+    FeedService,
+    PopularTagsService
     ]
 };
