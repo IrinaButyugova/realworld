@@ -3,17 +3,16 @@ import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
 import { PopularTagType } from "../../../types/popularTag.type";
 import { GetPopularTagsResponseInterface } from "../types/getPopularTagsResponse.interface";
+import { environment } from "../../../../../environments/environment";
 
 @Injectable()
 export class PopularTagsService{
-    apiUrl = 'https://api.realworld.io/api';
-
     constructor(private http: HttpClient){
 
     }
 
     getPopularTags(): Observable<PopularTagType[]>{
-        const url = this.apiUrl + '/tags';
+        const url = environment.apiUrl + '/tags';
 
         return this.http.get<GetPopularTagsResponseInterface>(url)
         .pipe(

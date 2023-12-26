@@ -7,17 +7,16 @@ import { RegisterRequestInterface } from "../../types/registerRequest.interface"
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
 import { AuthResponseInterface } from "../../types/authResponse.interface";
 import { LoginRequestInterface } from "../../types/loginRequest.interface";
+import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class AuthService{
-    apiUrl = 'https://api.realworld.io/api'
-
     constructor(private http: HttpClient){
 
     }
 
     register(data: RegisterRequestInterface): Observable<CurrentUserInterface>{
-        const url = this.apiUrl + '/users';
+        const url = environment.apiUrl + '/users';
 
         return this.http
         .post<AuthResponseInterface>(url, data)
@@ -25,7 +24,7 @@ export class AuthService{
     }
 
     login(data: LoginRequestInterface): Observable<CurrentUserInterface>{
-        const url = this.apiUrl + '/users/login';
+        const url = environment.apiUrl + '/users/login';
 
         return this.http
         .post<AuthResponseInterface>(url, data)
@@ -33,7 +32,7 @@ export class AuthService{
     }
 
     getCurrentUser(): Observable<CurrentUserInterface>{
-        const url = this.apiUrl + '/user';
+        const url = environment.apiUrl + '/user';
 
         return this.http
         .get<AuthResponseInterface>(url)
