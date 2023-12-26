@@ -5,7 +5,7 @@ import { GetFeedResponseInterface } from "../types/getFeedResponse.interface";
 
 @Injectable()
 export class FeedService {
-    apiUrl = 'https://conduit.productionready.io/api'
+    apiUrl = 'https://api.realworld.io/api'
 
     constructor(private http: HttpClient){
 

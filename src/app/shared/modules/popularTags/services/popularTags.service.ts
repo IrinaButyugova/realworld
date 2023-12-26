@@ -6,7 +6,7 @@ import { GetPopularTagsResponseInterface } from "../types/getPopularTagsResponse
 
 @Injectable()
 export class PopularTagsService{
-    apiUrl = 'https://conduit.productionready.io/api';
+    apiUrl = 'https://api.realworld.io/api';
 
     constructor(private http: HttpClient){
 

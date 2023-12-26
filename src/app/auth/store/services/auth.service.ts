@@ -10,7 +10,7 @@ import { LoginRequestInterface } from "../../types/loginRequest.interface";
 
 @Injectable()
 export class AuthService{
-    apiUrl = 'https://conduit.productionready.io/api'
+    apiUrl = 'https://api.realworld.io/api'
 
     constructor(private http: HttpClient){
 
