@@ -21,6 +21,9 @@ import { FeedService } from './shared/modules/feed/services/feed.service';
 import { GetPopularTagsEffect } from './shared/modules/popularTags/store/effects/getPopularTags.effect';
 import { popularTagReducers } from './shared/modules/popularTags/store/reducers';
 import { PopularTagsService } from './shared/modules/popularTags/services/popularTags.service';
+import { articleReducers } from './article/store/reducers';
+import { GetArticleEffect } from './article/store/effects/getArticle.effect';
+import { ArticleService } from './shared/services/article.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -29,12 +32,14 @@ export const appConfig: ApplicationConfig = {
     provideState('auth', reducers),
     provideState('feed', feedReducers),
     provideState('popularTags', popularTagReducers),
+    provideState('article', articleReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
       GetCurrentUserEffect, 
       GetFeedEffect,
-      GetPopularTagsEffect
+      GetPopularTagsEffect,
+      GetArticleEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -54,6 +59,7 @@ export const appConfig: ApplicationConfig = {
       multi: true
     },
     FeedService,
-    PopularTagsService
+    PopularTagsService,
+    ArticleService
     ]
 };

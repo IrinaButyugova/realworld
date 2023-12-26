@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { GlobalFeedComponent } from './globalFeed/components/globalFeed/globalFeed.component';
 import { YourFeedComponent } from './yourFeed/components/yourFeed/yourFeed.component';
 import { TagFeedComponent } from './tagFeed/components/tagFeed/tagFeed.component';
+import { ArticleComponent } from './article/components/article/article.component';
 
 export const routes: Routes = [
     {
@@ -25,5 +26,9 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'articles/:slug',
+        component: ArticleComponent
     }
 ];
