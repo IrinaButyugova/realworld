@@ -6,6 +6,8 @@ import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { Store } from '@ngrx/store';
 import { getCurrentUserAction } from './auth/store/actions/getCurrentUser.action';
 import { GlobalFeedModule } from './globalFeed/globalFeed.module';
+import { YourFeedModule } from './yourFeed/yourFeed.module';
+import { TagFeedModule } from './tagFeed/tagFeed.module';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module';
     RouterOutlet, 
     AuthModule, 
     TopBarModule,
-    GlobalFeedModule
+    GlobalFeedModule,
+    YourFeedModule,
+    TagFeedModule
   ],
   templateUrl: './app.component.html'
 })
