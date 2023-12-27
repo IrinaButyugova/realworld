@@ -7,6 +7,7 @@ import { articleSelector, errorSelector, isLoadingSelector } from "../../store/s
 import { getArticleAction } from "../../store/actions/getArticle.action";
 import { currentUserSelector } from "../../../auth/store/selectors";
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
+import { deleteArticleAction } from "../../store/actions/deleteArticle.action";
 
 
 @Component({
@@ -65,5 +66,11 @@ export class ArticleComponent implements OnInit{
                 return currentUser.username === article.author.username
             })
         )
+    }
+
+    deleteArticle(): void {
+        if(this.slug !== null){
+            this.store.dispatch(deleteArticleAction({slug: this.slug}));
+        }
     }
 }

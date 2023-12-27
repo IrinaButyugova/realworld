@@ -7,6 +7,7 @@ import { ErrorMessageModule } from "../shared/modules/errorMessage/errorMessage.
 import { LoadingModule } from "../shared/modules/loading/loading.module";
 import { ArticleComponent } from "./components/article/article.component";
 import { TagListModule } from "../shared/modules/tagList/tagList.module";
+import { ArticleService } from "./services/article.service";
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import { TagListModule } from "../shared/modules/tagList/tagList.module";
     ],
     declarations: [ArticleComponent],
     exports: [],
-    providers: [SharedArticleService]
+    providers: [SharedArticleService, ArticleService]
 })
 export class ArticleModule{
     
