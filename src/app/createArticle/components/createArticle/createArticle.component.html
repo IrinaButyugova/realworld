@@ -1,2 +1,4 @@
-Create article
-<rw-article-form></rw-article-form>
+<rw-article-form
+ [initialValues]="initialValues"
+ [isSubmitting]="false"
+ (articleSubmit)="onSubmit($event)"></rw-article-form>
