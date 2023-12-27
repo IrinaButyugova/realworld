@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 })
 export class ArticleFormComponent{
     @Input('initialValues') initialValuesProps!: ArticleInputInterface;
-    @Input('isSubmitting') isSubmittingProps!: boolean;
+    @Input('isSubmitting') isSubmittingProps!: boolean | null;
     @Input('errors') errorsProps!: BackendErrorsInterface | null;
 
     @Output('articleSubmit') articleSubmitEvent = new EventEmitter<
@@ -35,6 +35,12 @@ export class ArticleFormComponent{
     }
 
     onSubmit(): void {
-        this.articleSubmitEvent.emit(this.form.value);
+        const articleInput : ArticleInputInterface = {
+            title: this.form.value.title,
+            description: this.form.value.description,
+            body: this.form.value.body,
+            tagList: this.form.value.tagList.split(' ')
+        };
+        this.articleSubmitEvent.emit(articleInput);
     }
 }

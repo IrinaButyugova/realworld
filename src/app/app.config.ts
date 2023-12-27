@@ -26,6 +26,9 @@ import { GetArticleEffect } from './article/store/effects/getArticle.effect';
 import { ArticleService as SharedArticleService} from './shared/services/article.service';
 import { DeleteArticleEffect } from './article/store/effects/deleteArticle.effect';
 import { ArticleService } from './article/services/article.service';
+import { CreateAcrticleEffect } from './createArticle/store/effects/createArticle.effect';
+import { createArticleReducers } from './createArticle/store/reducers';
+import { CreateArticleService } from './createArticle/services/createArticle.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -35,6 +38,7 @@ export const appConfig: ApplicationConfig = {
     provideState('feed', feedReducers),
     provideState('popularTags', popularTagReducers),
     provideState('article', articleReducers),
+    provideState('createArticle', createArticleReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
@@ -42,7 +46,8 @@ export const appConfig: ApplicationConfig = {
       GetFeedEffect,
       GetPopularTagsEffect,
       GetArticleEffect, 
-      DeleteArticleEffect
+      DeleteArticleEffect,
+      CreateAcrticleEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -64,6 +69,7 @@ export const appConfig: ApplicationConfig = {
     FeedService,
     PopularTagsService,
     SharedArticleService,
-    ArticleService
+    ArticleService,
+    CreateArticleService
     ]
 };
