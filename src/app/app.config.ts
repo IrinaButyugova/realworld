@@ -36,6 +36,8 @@ import { EditArticleService } from './editArticle/services/editArticle.service';
 import { UpdateCurrentUserEffect } from './auth/store/effects/updateCurrentUser.effect';
 import { SettingsReducers } from './settings/store/reducers';
 import { LogoutEffect } from './auth/store/effects/logout.effect';
+import { AddToFavoritesEffect } from './shared/modules/addToFavorites/effects/addToFavorite.effect';
+import { AddToFavoritesService } from './shared/modules/addToFavorites/services/addToFavorites';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -60,7 +62,8 @@ export const appConfig: ApplicationConfig = {
       UpdateAcrticleEffect,
       GetUpdatedArticleEffect, 
       UpdateCurrentUserEffect,
-      LogoutEffect
+      LogoutEffect,
+      AddToFavoritesEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -84,6 +87,7 @@ export const appConfig: ApplicationConfig = {
     SharedArticleService,
     ArticleService,
     CreateArticleService,
-    EditArticleService
+    EditArticleService,
+    AddToFavoritesService
     ]
 };
