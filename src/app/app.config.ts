@@ -29,6 +29,10 @@ import { ArticleService } from './article/services/article.service';
 import { CreateAcrticleEffect } from './createArticle/store/effects/createArticle.effect';
 import { createArticleReducers } from './createArticle/store/reducers';
 import { CreateArticleService } from './createArticle/services/createArticle.service';
+import { UpdateAcrticleEffect } from './editArticle/store/effects/updateArticle.effect';
+import { GetAcrticleEffect as GetUpdatedArticleEffect} from './editArticle/store/effects/getArticle.effect';
+import { editArticleReducers } from './editArticle/store/reducers';
+import { EditArticleService } from './editArticle/services/editArticle.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -39,6 +43,7 @@ export const appConfig: ApplicationConfig = {
     provideState('popularTags', popularTagReducers),
     provideState('article', articleReducers),
     provideState('createArticle', createArticleReducers),
+    provideState('editArticle', editArticleReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
@@ -47,7 +52,9 @@ export const appConfig: ApplicationConfig = {
       GetPopularTagsEffect,
       GetArticleEffect, 
       DeleteArticleEffect,
-      CreateAcrticleEffect
+      CreateAcrticleEffect,
+      UpdateAcrticleEffect,
+      GetUpdatedArticleEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -70,6 +77,7 @@ export const appConfig: ApplicationConfig = {
     PopularTagsService,
     SharedArticleService,
     ArticleService,
-    CreateArticleService
+    CreateArticleService,
+    EditArticleService
     ]
 };

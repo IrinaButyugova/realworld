@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
     templateUrl: './articleForm.component.html'
 })
 export class ArticleFormComponent{
-    @Input('initialValues') initialValuesProps!: ArticleInputInterface;
+    @Input('initialValues') initialValuesProps!: ArticleInputInterface | null;
     @Input('isSubmitting') isSubmittingProps!: boolean | null;
     @Input('errors') errorsProps!: BackendErrorsInterface | null;
 
@@ -27,10 +27,10 @@ export class ArticleFormComponent{
 
     initializeForm() {
         this.form = this.fb.group({
-            title: this.initialValuesProps.title,
-            description: this.initialValuesProps.description,
-            body: this.initialValuesProps.body,
-            tagList: this.initialValuesProps.tagList.join(' ')
+            title: this.initialValuesProps?.title,
+            description: this.initialValuesProps?.description,
+            body: this.initialValuesProps?.body,
+            tagList: this.initialValuesProps?.tagList.join(' ')
         });
     }
 

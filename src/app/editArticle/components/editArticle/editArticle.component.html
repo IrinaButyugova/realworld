@@ -1,0 +1,7 @@
+<rw-loading *ngIf="isLoading$ | async"></rw-loading>
+<rw-article-form
+*ngIf="initialValues$ | async"
+ [initialValues]="initialValues$ | async"
+ [isSubmitting]="isSubmitting$ | async"
+ [errors]="backendErrors$ | async"
+ (articleSubmit)="onSubmit($event)"></rw-article-form>
