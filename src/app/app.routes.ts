@@ -7,6 +7,7 @@ import { TagFeedComponent } from './tagFeed/components/tagFeed/tagFeed.component
 import { ArticleComponent } from './article/components/article/article.component';
 import { CreateArticleComponent } from './createArticle/components/createArticle/createArticle.component';
 import { EditArticleComponent } from './editArticle/components/editArticle/editArticle.component';
+import { SettingsComponent } from './settings/components/settings/settings.component';
 
 export const routes: Routes = [
     {
@@ -40,5 +41,9 @@ export const routes: Routes = [
     {
         path: 'articles/:slug/edit',
         component: EditArticleComponent
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent
     }
 ];

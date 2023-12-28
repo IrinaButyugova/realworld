@@ -33,6 +33,9 @@ import { UpdateAcrticleEffect } from './editArticle/store/effects/updateArticle.
 import { GetAcrticleEffect as GetUpdatedArticleEffect} from './editArticle/store/effects/getArticle.effect';
 import { editArticleReducers } from './editArticle/store/reducers';
 import { EditArticleService } from './editArticle/services/editArticle.service';
+import { UpdateCurrentUserEffect } from './auth/store/effects/updateCurrentUser.effect';
+import { SettingsReducers } from './settings/store/reducers';
+import { LogoutEffect } from './auth/store/effects/logout.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -44,6 +47,7 @@ export const appConfig: ApplicationConfig = {
     provideState('article', articleReducers),
     provideState('createArticle', createArticleReducers),
     provideState('editArticle', editArticleReducers),
+    provideState('settings', SettingsReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
@@ -54,7 +58,9 @@ export const appConfig: ApplicationConfig = {
       DeleteArticleEffect,
       CreateAcrticleEffect,
       UpdateAcrticleEffect,
-      GetUpdatedArticleEffect
+      GetUpdatedArticleEffect, 
+      UpdateCurrentUserEffect,
+      LogoutEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
