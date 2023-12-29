@@ -8,6 +8,7 @@ import { ArticleComponent } from './article/components/article/article.component
 import { CreateArticleComponent } from './createArticle/components/createArticle/createArticle.component';
 import { EditArticleComponent } from './editArticle/components/editArticle/editArticle.component';
 import { SettingsComponent } from './settings/components/settings/settings.component';
+import { UserProfileComponent } from './userProfile/components/userProfile/userProfile.component';
 
 export const routes: Routes = [
     {
@@ -45,5 +46,13 @@ export const routes: Routes = [
     {
         path: 'settings',
         component: SettingsComponent
+    },
+    {
+        path: 'profiles/:slug',
+        component: UserProfileComponent
+    },
+    {
+        path: 'profiles/:slug/favorites',
+        component: UserProfileComponent
     }
 ];

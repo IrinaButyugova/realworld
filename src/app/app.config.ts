@@ -38,6 +38,9 @@ import { SettingsReducers } from './settings/store/reducers';
 import { LogoutEffect } from './auth/store/effects/logout.effect';
 import { AddToFavoritesEffect } from './shared/modules/addToFavorites/effects/addToFavorite.effect';
 import { AddToFavoritesService } from './shared/modules/addToFavorites/services/addToFavorites';
+import { GetUserProfileEffect } from './userProfile/store/effects/getUserProfile.effect';
+import { userProfuleReducers } from './userProfile/store/reducers';
+import { UserProfileService } from './userProfile/services/userProfile.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -50,6 +53,7 @@ export const appConfig: ApplicationConfig = {
     provideState('createArticle', createArticleReducers),
     provideState('editArticle', editArticleReducers),
     provideState('settings', SettingsReducers),
+    provideState('userProfile', userProfuleReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
@@ -63,7 +67,8 @@ export const appConfig: ApplicationConfig = {
       GetUpdatedArticleEffect, 
       UpdateCurrentUserEffect,
       LogoutEffect,
-      AddToFavoritesEffect
+      AddToFavoritesEffect, 
+      GetUserProfileEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -88,6 +93,7 @@ export const appConfig: ApplicationConfig = {
     ArticleService,
     CreateArticleService,
     EditArticleService,
-    AddToFavoritesService
+    AddToFavoritesService,
+    UserProfileService
     ]
 };
