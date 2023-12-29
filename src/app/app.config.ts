@@ -41,6 +41,8 @@ import { AddToFavoritesService } from './shared/modules/addToFavorites/services/
 import { GetUserProfileEffect } from './userProfile/store/effects/getUserProfile.effect';
 import { userProfuleReducers } from './userProfile/store/reducers';
 import { UserProfileService } from './userProfile/services/userProfile.service';
+import { FollowEffect } from './shared/modules/follow/store/effects/follow.effect';
+import { FollowService } from './shared/modules/follow/services/follow.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -68,7 +70,8 @@ export const appConfig: ApplicationConfig = {
       UpdateCurrentUserEffect,
       LogoutEffect,
       AddToFavoritesEffect, 
-      GetUserProfileEffect
+      GetUserProfileEffect,
+      FollowEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -94,6 +97,7 @@ export const appConfig: ApplicationConfig = {
     CreateArticleService,
     EditArticleService,
     AddToFavoritesService,
-    UserProfileService
+    UserProfileService,
+    FollowService
     ]
 };

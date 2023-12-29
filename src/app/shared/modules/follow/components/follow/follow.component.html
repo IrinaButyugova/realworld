@@ -1,0 +1,8 @@
+    <button class="btn btn-sm action-btn ng-binding btn-outline-secondary btn-secondary" *ngIf="!isFollowed" (click)="handleFollow()">
+        <i class="ion-plus-round" ></i>
+        &nbsp; Follow {{ usernameProps }}
+    </button>
+    <button class="btn btn-sm action-btn ng-binding btn-outline-secondary btn-outline-secondary" *ngIf="isFollowed" (click)="handleFollow()">
+        <i class="ion-minus-round" ></i>
+        &nbsp; Unfollow {{ usernameProps }}
+    </button>

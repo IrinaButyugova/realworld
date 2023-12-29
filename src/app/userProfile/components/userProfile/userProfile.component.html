@@ -7,7 +7,7 @@
                     <h4>{{ userProfile.username }}</h4>
                     <p>{{ userProfile.bio }}</p>
                     <div>
-                        FOLLOW USER BUTTON
+                        <rw-follow [isFollowed]="userProfile.following" [username]="userProfile.username" *ngIf="!(isCurrentUserProfile$ | async)"></rw-follow>
                         <a
                         class="btn btn-sm btn-outline-secondary action-btn"
                         [routerLink]="['/settings']"

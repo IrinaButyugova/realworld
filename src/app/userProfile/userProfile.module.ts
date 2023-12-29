@@ -4,9 +4,10 @@ import { UserProfileComponent } from "./components/userProfile/userProfile.compo
 import { UserProfileService } from "./services/userProfile.service";
 import { FeedModule } from "../shared/modules/feed/feed.module";
 import { RouterModule } from "@angular/router";
+import { FollowModule } from "../shared/modules/follow/follow.module";
 
 @NgModule({
-    imports: [CommonModule, FeedModule, RouterModule],
+    imports: [CommonModule, FeedModule, RouterModule, FollowModule],
     declarations: [UserProfileComponent],
     providers: [UserProfileService]
 })
