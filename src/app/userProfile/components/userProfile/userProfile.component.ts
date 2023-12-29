@@ -7,6 +7,7 @@ import { errorSelector, isLoadingSelector, userProfileSelector } from "../../sto
 import { getUserProfileAction } from "../../store/actions/getUserProfile.action";
 import { currentUserSelector } from "../../../auth/store/selectors";
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
+import { followProfileAction } from "../../store/actions/folowProfile.action";
 
 @Component({
     selector: 'rw-user-profile',
@@ -75,6 +76,19 @@ export class UserProfileComponent implements OnInit, OnDestroy{
         return(this.apiUrl = isFavorites 
         ? `/articles?favorited=${this.slug}`
         : `/articles?author=${this.slug}`);
+    }
+
+    onFollow(): void {
+        if(this.userProfile == null){
+            return;
+        }
+
+        this.store.dispatch(
+            followProfileAction({
+                isFollowed: this.userProfile.following,
+                username: this.userProfile.username
+            })
+        );
     }
 
     ngOnDestroy(): void {

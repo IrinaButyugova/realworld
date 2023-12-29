@@ -25,6 +25,7 @@
                         Delete Article
                     </button>
                 </span>
+                <rw-follow [isFollowed]="article.author.following" [username]="article.author.username" *ngIf="!(isAuthor$ | async)" (follow)="onFollow()"></rw-follow>
             </div>
         </div>
     </div>
@@ -40,5 +41,33 @@
                 <rw-tag-list [tags]="article.tagList"></rw-tag-list>
             </div>
         </div>
+    </div>
+    <div class="container" *ngIf="article">
+    <hr>
+    <div class="article-meta">
+        <a [routerLink]="['/profiles', article.author.username]">
+            <img [src]="article.author.image"/>
+        </a>
+        <div class="info">
+            <a [routerLink]="['/profiles', article.author.username]">
+                {{ article.author.username }}
+            </a>
+            <span class="date">
+                {{ article.createdAt }}
+            </span>
+        </div>
+        <span *ngIf="isAuthor$ | async">
+            <a [routerLink]="['/articles', article.slug, 'edit']"
+            class="btn btn-outline-secondary btn-sm">
+                <i class="ion-edit"></i>
+                Edit Article
+            </a>
+            <button class="btn btn-outline-danger btn-sm"
+            (click)="deleteArticle()">
+                Delete Article
+            </button>
+        </span>
+        <rw-follow [isFollowed]="article.author.following" [username]="article.author.username" *ngIf="!(isAuthor$ | async)" (follow)="onFollow()"></rw-follow>
+    </div>
     </div>
 </div>

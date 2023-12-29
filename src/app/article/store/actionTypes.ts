@@ -6,4 +6,8 @@ export enum ActionTypes {
     DELETE_ARTICLE = '[Feed] Delete article',
     DELETE_ARTICLE_SUCCESS = '[Feed] Delete article success',
     DELETE_ARTICLE_FAILURE = '[Feed] Delete article failure',
+
+    FOLLOW_PROFILE = '[Feed] Follow profile',
+    FOLLOW_PROFILE_SUCCESS = '[Feed] Follow profile success',
+    FOLLOW_PROFILE_FAILURE = '[Feed] Follow profile failure',
 }

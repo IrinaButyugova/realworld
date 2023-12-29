@@ -3,15 +3,15 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap} from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 
-import { FollowService } from "../../services/follow.service";
-import { followAction, followFailureAction, followSuccessAction } from "../actions/follow.action";
-import { ProfileInterface } from "../../../../types/profile.interface";
+import { FollowService } from "../../../shared/services/follow.service";
+import { ProfileInterface } from "../../../shared/types/profile.interface";
+import { followProfileAction, followProfileFailureAction, followProfileSuccessAction } from "../actions/folowProfile.action";
 
 @Injectable()
-export class FollowEffect {
-    follow$ = createEffect(() =>
+export class FollowProfileEffect {
+    followProfile$ = createEffect(() =>
     this.actions$.pipe(
-        ofType(followAction),
+        ofType(followProfileAction),
         switchMap(({isFollowed, username}) => {
             const profile$ = isFollowed 
             ? this.followService.unfollow(username)
@@ -19,10 +19,10 @@ export class FollowEffect {
 
             return profile$.pipe(
                 map((profile: ProfileInterface) => {
-                    return followSuccessAction({profile});
+                    return followProfileSuccessAction({profile});
                 }),
                 catchError((errorResponse: HttpErrorResponse) => {
-                    return of(followFailureAction());
+                    return of(followProfileFailureAction());
                 })
             )
         })

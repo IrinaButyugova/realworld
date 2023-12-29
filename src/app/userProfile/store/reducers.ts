@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { UserProfileStateInterface } from "../types/userProfile.state.interface";
 import { getUserProfileAction, getUserProfileFailureAction, getUserProfileSuccessAction } from "./actions/getUserProfile.action";
+import { followProfileSuccessAction } from "./actions/folowProfile.action";
 
 const initialState: UserProfileStateInterface = {
     isLoading: false,
@@ -33,6 +34,13 @@ const userProfileReducer = createReducer(
             isLoading: false,
             data: null
         })
+    ),
+    on(
+        followProfileSuccessAction,
+        (state, action): UserProfileStateInterface => ({
+            ...state,
+            data: action.profile
+        }) 
     )
 )
 

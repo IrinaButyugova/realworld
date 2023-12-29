@@ -8,6 +8,7 @@ import { getArticleAction } from "../../store/actions/getArticle.action";
 import { currentUserSelector } from "../../../auth/store/selectors";
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
 import { deleteArticleAction } from "../../store/actions/deleteArticle.action";
+import { followProfileAction } from "../../store/actions/folowProfile.action";
 
 
 @Component({
@@ -72,5 +73,18 @@ export class ArticleComponent implements OnInit{
         if(this.slug !== null){
             this.store.dispatch(deleteArticleAction({slug: this.slug}));
         }
+    }
+
+    onFollow(): void {
+        if(this.article == null){
+            return;
+        }
+
+        this.store.dispatch(
+            followProfileAction({
+                isFollowed: this.article.author.following,
+                username: this.article.author.username
+            })
+        );
     }
 }
