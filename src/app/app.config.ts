@@ -37,7 +37,7 @@ import { UpdateCurrentUserEffect } from './auth/store/effects/updateCurrentUser.
 import { SettingsReducers } from './settings/store/reducers';
 import { LogoutEffect } from './auth/store/effects/logout.effect';
 import { AddToFavoritesEffect } from './shared/modules/addToFavorites/effects/addToFavorite.effect';
-import { AddToFavoritesService } from './shared/modules/addToFavorites/services/addToFavorites';
+import { AddToFavoritesService } from './shared/modules/addToFavorites/services/addToFavorites.service';
 import { GetUserProfileEffect } from './userProfile/store/effects/getUserProfile.effect';
 import { userProfuleReducers } from './userProfile/store/reducers';
 import { UserProfileService } from './userProfile/services/userProfile.service';
