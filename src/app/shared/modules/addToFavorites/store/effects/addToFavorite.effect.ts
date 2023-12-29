@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap} from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 
-import { AddToFavoritesService } from "../services/addToFavorites.service";
+import { AddToFavoritesService } from "../../services/addToFavorites.service";
 import { addToFavoritesAction, addToFavoritesFailureAction, addToFavoritesSuccessAction } from "../actions/addToFavorites.action";
-import { ArticleInterface } from "../../../types/article.interface";
+import { ArticleInterface } from "../../../../types/article.interface";
 
 @Injectable()
 export class AddToFavoritesEffect {
