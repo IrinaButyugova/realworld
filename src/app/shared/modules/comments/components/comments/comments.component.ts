@@ -9,6 +9,7 @@ import { CurrentUserInterface } from "../../../../types/currentUser.interface";
 import { CommentInterface } from "../../types/comment.interface";
 import { commentsSelector } from "../../store/selectors";
 import { getCommentsAction } from "../../store/actions/getComments.action";
+import { deleteCommentAction } from "../../store/actions/deleteAction.action";
 
 @Component({
     selector: 'rw-comments',
@@ -51,6 +52,13 @@ export class CommentsComponent implements OnInit{
             slug: this.slugProps,
             commentInput: inputData}
         ));
+    }
+
+    deleteComment(id: number): void{
+        this.store.dispatch(deleteCommentAction({
+            slug: this.slugProps,
+            id: id
+        }))
     }
 
 }

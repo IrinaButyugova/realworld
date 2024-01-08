@@ -41,7 +41,7 @@
         </a>
         <span class="date-posted">{{ comment.createdAt}}</span>
         <span class="mod-options">
-          <i class="ion-trash-a"></i>
+          <i class="ion-trash-a" (click)="deleteComment(comment.id)"></i>
         </span>
       </div>
     </div>

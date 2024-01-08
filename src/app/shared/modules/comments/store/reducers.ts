@@ -2,6 +2,7 @@ import { Action, createReducer, on } from "@ngrx/store";
 import { CommentsStateInterface } from "../types/commentsState.interface";
 import { createCommentAction, createCommentSuccessAction } from "./actions/createComment.action";
 import { getCommentsAction, getCommentsSuccessAction } from "./actions/getComments.action";
+import { deleteCommentAction, deleteCommentSuccessAction } from "./actions/deleteAction.action";
 
 const initialState: CommentsStateInterface ={
     isSubmitting: false,
@@ -37,7 +38,20 @@ const commentsReducer = createReducer(
             isLoading: false,
             data: action.comments
         })
-    )
+    ),
+    on(deleteCommentAction,
+        (state): CommentsStateInterface => ({
+            ...state,
+            isSubmitting: true
+    })
+    ),
+    on(deleteCommentSuccessAction,
+        (state, action): CommentsStateInterface => ({
+            ...state,
+            isSubmitting: false,
+            data: state.data.filter(x => x.id !== action.id)
+        })
+    ),
 )
 
 export function commentsReducers(state: CommentsStateInterface, action: Action){

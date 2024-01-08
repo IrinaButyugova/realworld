@@ -48,6 +48,7 @@ import { CommentsService } from './shared/modules/comments/services/comments.ser
 import { CreateCommentEffect } from './shared/modules/comments/store/effects/createComment.effect';
 import { commentsReducers } from './shared/modules/comments/store/reducers';
 import { GetCommentsEffect } from './shared/modules/comments/store/effects/getComments.effect';
+import { DeleteCommentEffect } from './shared/modules/comments/store/effects/deleteComment.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -80,7 +81,8 @@ export const appConfig: ApplicationConfig = {
       ArticleFollowProfileEffect,
       UserProfileFollowProfileEffect,
       CreateCommentEffect,
-      GetCommentsEffect
+      GetCommentsEffect, 
+      DeleteCommentEffect
       ),
     provideStoreDevtools({
       maxAge: 25,

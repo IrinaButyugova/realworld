@@ -22,6 +22,12 @@ export class CommentsService{
         ));
     }
 
+    deleteComment(slug: string, id: number):  Observable<{}> {
+        const fullUrl = this.getUrl(slug) + `/${id}`;
+
+        return this.http.delete<{}>(fullUrl);
+    }
+
     getComments(slug: string): Observable<CommentInterface[]>{
         const fullUrl = this.getUrl(slug);
 
