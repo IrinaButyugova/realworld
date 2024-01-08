@@ -47,6 +47,7 @@ import { FollowProfileEffect as UserProfileFollowProfileEffect} from './userProf
 import { CommentsService } from './shared/modules/comments/services/comments.service';
 import { CreateCommentEffect } from './shared/modules/comments/store/effects/createComment.effect';
 import { commentsReducers } from './shared/modules/comments/store/reducers';
+import { GetCommentsEffect } from './shared/modules/comments/store/effects/getComments.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -78,7 +79,8 @@ export const appConfig: ApplicationConfig = {
       GetUserProfileEffect,
       ArticleFollowProfileEffect,
       UserProfileFollowProfileEffect,
-      CreateCommentEffect
+      CreateCommentEffect,
+      GetCommentsEffect
       ),
     provideStoreDevtools({
       maxAge: 25,

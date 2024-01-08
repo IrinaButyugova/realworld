@@ -1,31 +1,45 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { CommentStateInterface } from "../types/commentState.interface";
+import { CommentsStateInterface } from "../types/commentsState.interface";
 import { createCommentAction, createCommentSuccessAction } from "./actions/createComment.action";
+import { getCommentsAction, getCommentsSuccessAction } from "./actions/getComments.action";
 
-const initialState: CommentStateInterface ={
+const initialState: CommentsStateInterface ={
     isSubmitting: false,
     isLoading: false,
-    data: null,
-    newComment: null
+    data: [],
 }
 
 const commentsReducer = createReducer(
     initialState,
     on(createCommentAction,
-    (state): CommentStateInterface => ({
-        ...state,
-        isSubmitting: true
+        (state): CommentsStateInterface => ({
+            ...state,
+            isSubmitting: true
     })
     ),
     on(createCommentSuccessAction,
-        (state, action): CommentStateInterface => ({
+        (state, action): CommentsStateInterface => ({
             ...state,
             isSubmitting: false,
-            newComment: action.comment
+            data: [...state.data, action.comment]
         })
-        ),
+    ),
+    on(getCommentsAction,
+        (state, action): CommentsStateInterface => ({
+            ...state,
+            isLoading: true,
+            data: []
+        })
+    ),
+    on(getCommentsSuccessAction,
+        (state, action): CommentsStateInterface => ({
+            ...state,
+            isLoading: false,
+            data: action.comments
+        })
+    )
 )
 
-export function commentsReducers(state: CommentStateInterface, action: Action){
+export function commentsReducers(state: CommentsStateInterface, action: Action){
     return commentsReducer(state, action);
 }
