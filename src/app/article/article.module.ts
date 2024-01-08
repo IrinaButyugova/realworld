@@ -9,6 +9,7 @@ import { ArticleComponent } from "./components/article/article.component";
 import { TagListModule } from "../shared/modules/tagList/tagList.module";
 import { ArticleService } from "./services/article.service";
 import { FollowModule } from "../shared/modules/follow/follow.module";
+import { CommentsModule } from "../shared/modules/comments/comments.module";
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { FollowModule } from "../shared/modules/follow/follow.module";
         ErrorMessageModule, 
         LoadingModule, 
         TagListModule,
-        FollowModule
+        FollowModule,
+        CommentsModule
     ],
     declarations: [ArticleComponent],
     exports: [],

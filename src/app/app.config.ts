@@ -44,6 +44,9 @@ import { UserProfileService } from './userProfile/services/userProfile.service';
 import { FollowService } from './shared/services/follow.service';
 import { FollowProfileEffect as ArticleFollowProfileEffect} from './article/store/effects/followProfile.effect';
 import { FollowProfileEffect as UserProfileFollowProfileEffect} from './userProfile/store/effects/followProfile.effect';
+import { CommentsService } from './shared/modules/comments/services/comments.service';
+import { CreateCommentEffect } from './shared/modules/comments/store/effects/createComment.effect';
+import { commentsReducers } from './shared/modules/comments/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
@@ -57,6 +60,7 @@ export const appConfig: ApplicationConfig = {
     provideState('editArticle', editArticleReducers),
     provideState('settings', SettingsReducers),
     provideState('userProfile', userProfuleReducers),
+    provideState('comments', commentsReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
@@ -73,7 +77,8 @@ export const appConfig: ApplicationConfig = {
       AddToFavoritesEffect, 
       GetUserProfileEffect,
       ArticleFollowProfileEffect,
-      UserProfileFollowProfileEffect
+      UserProfileFollowProfileEffect,
+      CreateCommentEffect
       ),
     provideStoreDevtools({
       maxAge: 25,
@@ -100,6 +105,7 @@ export const appConfig: ApplicationConfig = {
     EditArticleService,
     AddToFavoritesService,
     UserProfileService,
-    FollowService
+    FollowService,
+    CommentsService
     ]
 };
