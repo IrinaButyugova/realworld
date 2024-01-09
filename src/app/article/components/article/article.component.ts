@@ -1,20 +1,37 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { Store, select } from "@ngrx/store";
-import { ArticleInterface } from "../../../shared/types/article.interface";
 import { Observable, Subscription, combineLatest, map } from "rxjs";
+
 import { articleSelector, errorSelector, isLoadingSelector } from "../../store/selectors";
 import { getArticleAction } from "../../store/actions/getArticle.action";
 import { currentUserSelector } from "../../../auth/store/selectors";
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
 import { deleteArticleAction } from "../../store/actions/deleteArticle.action";
 import { followProfileAction } from "../../store/actions/folowProfile.action";
+import { ArticleInterface } from "../../../shared/types/article.interface";
+import { ErrorMessageComponent } from "../../../shared/modules/errorMessage/components/errorMessage/errorMessage.component";
+import { LoadingComponent } from "../../../shared/modules/loading/components/loading/loading.component";
+import { TagListComponent } from "../../../shared/modules/tagList/components/tagList/tagList.component";
+import { FollowComponent } from "../../../shared/modules/follow/components/follow/follow.component";
+import { CommentsComponent } from "../../../shared/modules/comments/components/comments/comments.component";
 
 
 @Component({
     selector: 'rw-article',
     templateUrl: './article.component.html',
-    styleUrls: ['./article.component.scss']
+    styleUrls: ['./article.component.scss'],
+    standalone: true,
+    imports: [
+        CommonModule, 
+        RouterModule, 
+        ErrorMessageComponent, 
+        LoadingComponent, 
+        TagListComponent,
+        FollowComponent,
+        CommentsComponent
+    ]
 })
 export class ArticleComponent implements OnInit{
     slug!: string | null;

@@ -1,10 +1,17 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+
+import { RouterModule } from "@angular/router";
 import { Observable,  } from "rxjs";
-import { CurrentUserInterface } from "../../../types/currentUser.interface";
 import { Store, select } from "@ngrx/store";
 import { currentUserSelector, isAnonymousSelector, isLoggedInSelector } from "../../../../auth/store/selectors";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        RouterModule
+    ],
     selector: 'mc-topBar',
     templateUrl: './topBar.component.html',
     styleUrls: ['./topBar.component.scss']

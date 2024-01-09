@@ -1,15 +1,25 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ProfileInterface } from "../../../shared/types/profile.interface";
 import { Observable, Subscription, combineLatest, filter, map } from "rxjs";
-import { ActivatedRoute, Params, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router, RouterModule } from "@angular/router";
 import { Store, select } from "@ngrx/store";
+
 import { errorSelector, isLoadingSelector, userProfileSelector } from "../../store/selectors";
 import { getUserProfileAction } from "../../store/actions/getUserProfile.action";
 import { currentUserSelector } from "../../../auth/store/selectors";
 import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
 import { followProfileAction } from "../../store/actions/folowProfile.action";
+import { FeedComponent } from "../../../shared/modules/feed/components/feed/feed.component";
+import { FollowComponent } from "../../../shared/modules/follow/components/follow/follow.component";
+import { ProfileInterface } from "../../../shared/types/profile.interface";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        FeedComponent, 
+        RouterModule, 
+        FollowComponent],
     selector: 'rw-user-profile',
     templateUrl: './userProfile.component.html'
 })

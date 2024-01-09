@@ -1,16 +1,23 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
 import { Observable, Subscription, filter } from "rxjs";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Store, select } from "@ngrx/store";
+
 import { currentUserSelector } from "../../../auth/store/selectors";
-import { BackendErrorsInterface } from "../../../shared/types/backendErrors.interface";
 import { isSubmittingSelector, validationErrorsSelector } from "../../store/selectors";
 import { CurrentUserInputInterface } from "../../../shared/types/currentUserInput.interface";
 import { updateCurrentUserAction } from "../../../auth/store/actions/updateCurrentUser.action";
 import { logoutAction } from "../../../auth/store/actions/sync.action";
+import { CurrentUserInterface } from "../../../shared/types/currentUser.interface";
+import { BackendErrorMessagesComponent } from "../../../shared/modules/backendErrorMessages/components/backendErrorMessages.component";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        ReactiveFormsModule, 
+        BackendErrorMessagesComponent],
     selector: 'rw-settings',
     templateUrl: './settings.component.html'
 })

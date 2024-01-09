@@ -1,14 +1,22 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import { registerAction } from "../../store/actions/register.actions";
 import { isSubmittingSelector, validationErrorsSelector } from "../../store/selectors";
 import { RegisterRequestInterface } from "../../types/registerRequest.interface";
-import { BackendErrorsInterface } from "../../../shared/types/backendErrors.interface";
+import { BackendErrorMessagesComponent } from "../../../shared/modules/backendErrorMessages/components/backendErrorMessages.component";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        RouterModule,
+        ReactiveFormsModule,
+        BackendErrorMessagesComponent ],
     selector: 'rw-register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']

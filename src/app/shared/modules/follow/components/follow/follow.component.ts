@@ -1,7 +1,10 @@
+import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 @Component({
+    standalone: true,
+    imports: [CommonModule],
     selector: 'rw-follow',
     templateUrl: './follow.component.html'
 })

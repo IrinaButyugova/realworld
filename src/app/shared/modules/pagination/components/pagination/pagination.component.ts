@@ -1,7 +1,15 @@
+import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+
 import { UtilsService } from "../../../../services/utils.service";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        RouterModule
+    ],
     selector: 'rw-pagination',
     templateUrl: './pagination.component.html',
     styleUrls: ['./pagination.component.scss']

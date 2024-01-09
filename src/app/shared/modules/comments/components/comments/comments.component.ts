@@ -1,3 +1,6 @@
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { Component, Input, OnInit } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
@@ -12,6 +15,12 @@ import { getCommentsAction } from "../../store/actions/getComments.action";
 import { deleteCommentAction } from "../../store/actions/deleteAction.action";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule 
+    ],
     selector: 'rw-comments',
     templateUrl: './comments.component.html'
 })

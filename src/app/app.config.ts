@@ -49,36 +49,27 @@ import { CreateCommentEffect } from './shared/modules/comments/store/effects/cre
 import { commentsReducers } from './shared/modules/comments/store/reducers';
 import { GetCommentsEffect } from './shared/modules/comments/store/effects/getComments.effect';
 import { DeleteCommentEffect } from './shared/modules/comments/store/effects/deleteComment.effect';
+import { UtilsService } from './shared/services/utils.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
     provideClientHydration(), 
     provideStore({router: routerReducer}),
     provideState('auth', reducers),
-    provideState('feed', feedReducers),
-    provideState('popularTags', popularTagReducers),
-    provideState('article', articleReducers),
-    provideState('createArticle', createArticleReducers),
-    provideState('editArticle', editArticleReducers),
-    provideState('settings', SettingsReducers),
-    provideState('userProfile', userProfuleReducers),
     provideState('comments', commentsReducers),
+    provideState('popularTags', popularTagReducers),
+    provideState('feed', feedReducers),
+    provideState('userProfile', userProfuleReducers),
     provideEffects(
       RegisterEffect, 
       LoginEffect, 
       GetCurrentUserEffect, 
       GetFeedEffect,
       GetPopularTagsEffect,
-      GetArticleEffect, 
-      DeleteArticleEffect,
-      CreateAcrticleEffect,
-      UpdateAcrticleEffect,
-      GetUpdatedArticleEffect, 
       UpdateCurrentUserEffect,
       LogoutEffect,
       AddToFavoritesEffect, 
       GetUserProfileEffect,
-      ArticleFollowProfileEffect,
       UserProfileFollowProfileEffect,
       CreateCommentEffect,
       GetCommentsEffect, 
@@ -104,12 +95,10 @@ export const appConfig: ApplicationConfig = {
     FeedService,
     PopularTagsService,
     SharedArticleService,
-    ArticleService,
-    CreateArticleService,
-    EditArticleService,
     AddToFavoritesService,
     UserProfileService,
     FollowService,
-    CommentsService
+    CommentsService,
+    UtilsService
     ]
 };

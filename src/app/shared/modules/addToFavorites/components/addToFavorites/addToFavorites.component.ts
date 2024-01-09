@@ -1,8 +1,12 @@
+import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+
 import { addToFavoritesAction } from "../../store/actions/addToFavorites.action";
 
 @Component({
+    standalone: true,
+    imports: [CommonModule],
     selector: 'rw-add-to-favorites',
     templateUrl: './addToFavorites.component.html'
 })

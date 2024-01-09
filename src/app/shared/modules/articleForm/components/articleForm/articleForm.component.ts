@@ -1,9 +1,17 @@
+import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+
 import { ArticleInputInterface } from "../../../../types/articleInput.interface";
 import { BackendErrorsInterface } from "../../../../types/backendErrors.interface";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { BackendErrorMessagesComponent } from "../../../backendErrorMessages/components/backendErrorMessages.component";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        ReactiveFormsModule, 
+        BackendErrorMessagesComponent],
     selector: 'rw-article-form',
     templateUrl: './articleForm.component.html'
 })

@@ -1,14 +1,22 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import { isSubmittingSelector, validationErrorsSelector } from "../../store/selectors";
-import { BackendErrorsInterface } from "../../../shared/types/backendErrors.interface";
 import { LoginRequestInterface } from "../../types/loginRequest.interface";
 import { loginAction } from "../../store/actions/login.actions";
+import { BackendErrorMessagesComponent } from "../../../shared/modules/backendErrorMessages/components/backendErrorMessages.component";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        RouterModule,
+        ReactiveFormsModule,
+        BackendErrorMessagesComponent ],
     selector: 'rw-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']

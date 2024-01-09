@@ -1,12 +1,20 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { ArticleInputInterface } from "../../../shared/types/articleInput.interface";
 import { Observable } from "rxjs";
+import { Store, select } from "@ngrx/store";
+
+import { ArticleInputInterface } from "../../../shared/types/articleInput.interface";
+import { createArticleAction } from "../../store/actions/createArticle.action";
 import { BackendErrorsInterface } from "../../../shared/types/backendErrors.interface";
 import { isSubmittingSelector, validationErrorsSelector } from "../../store/selectors";
-import { Store, select } from "@ngrx/store";
-import { createArticleAction } from "../../store/actions/createArticle.action";
+import { ArticleFormComponent } from "../../../shared/modules/articleForm/components/articleForm/articleForm.component";
 
 @Component({
+    standalone: true,
+    imports: [
+        CommonModule, 
+        ArticleFormComponent
+    ],
     selector: 'rw-create-article',
     templateUrl: './createArticle.component.html'
 })
