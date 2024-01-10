@@ -1,10 +1,15 @@
-import { Injectable } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { Injectable, PLATFORM_ID, inject } from "@angular/core";
 
 @Injectable()
 export class PersistanceService{
+    platformId = inject(PLATFORM_ID);
+    
     set(key: string, data: any): void{
         try{
-            localStorage.setItem(key, data);
+            if(isPlatformBrowser(this.platformId)){
+                localStorage.setItem(key, data);
+            }
         }
         catch(e){
             console.error('Error saving to localStorage', e);
@@ -13,8 +18,7 @@ export class PersistanceService{
 
     get(key: string): any{
         try{
-            if (typeof localStorage !== 'undefined')
-            {
+            if(isPlatformBrowser(this.platformId)){
                 var item = localStorage.getItem(key)
                 if(item){
                     return item;
