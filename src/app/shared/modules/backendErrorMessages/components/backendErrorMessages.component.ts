@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, Input } from "@angular/core";
 
 import { BackendErrorsInterface } from "../../../types/backendErrors.interface";
 
 @Component({
     standalone: true,
-    imports: [CommonModule],
+    imports: [],
     selector: 'rw-backend-error-messages',
     templateUrl: './backendErrorMessages.component.html',
     styleUrls: ['./backendErrorMessages.component.scss']

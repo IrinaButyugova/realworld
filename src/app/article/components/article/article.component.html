@@ -1,76 +1,93 @@
 <div class="article-page">
-    <div class="banner">
-        <div class="container" *ngIf="article">
-            <h1> {{ article.title }}</h1>
-            <div class="article-meta">
-                <a [routerLink]="['/profiles', article.author.username]">
-                    <img [src]="article.author.image"/>
-                </a>
-                <div class="info">
-                    <a [routerLink]="['/profiles', article.author.username]">
-                        {{ article.author.username }}
-                    </a>
-                    <span class="date">
-                        {{ article.createdAt }}
-                    </span>
-                </div>
-                <span *ngIf="isAuthor$ | async">
-                    <a [routerLink]="['/articles', article.slug, 'edit']"
-                    class="btn btn-outline-secondary btn-sm">
-                        <i class="ion-edit"></i>
-                        Edit Article
-                    </a>
-                    <button class="btn btn-outline-danger btn-sm"
-                    (click)="deleteArticle()">
-                        Delete Article
-                    </button>
-                </span>
-                <rw-follow [isFollowed]="article.author.following" [username]="article.author.username" *ngIf="!(isAuthor$ | async)" (follow)="onFollow()"></rw-follow>
-            </div>
-        </div>
-    </div>
-    <div class="container page">
-        <rw-loading *ngIf="isLoading$ | async"></rw-loading>
-        <rw-error-message *ngIf="error$ | async"></rw-error-message>
-
-        <div class="row article-content" *ngIf="article">
-            <div class="col-xs-12">
-                <div>
-                    <p>{{ article.body }}</p>
-                </div>
-                <rw-tag-list [tags]="article.tagList"></rw-tag-list>
-            </div>
-        </div>
-    </div>
-    <div class="container" *ngIf="article">
-    <hr>
-    <div class="article-actions">
+  <div class="banner">
+    @if (article) {
+      <div class="container">
+        <h1> {{ article.title }}</h1>
         <div class="article-meta">
+          <a [routerLink]="['/profiles', article.author.username]">
+            <img [src]="article.author.image"/>
+          </a>
+          <div class="info">
             <a [routerLink]="['/profiles', article.author.username]">
-                <img [src]="article.author.image"/>
+              {{ article.author.username }}
+            </a>
+            <span class="date">
+              {{ article.createdAt }}
+            </span>
+          </div>
+          @if (isAuthor$ | async) {
+            <span>
+              <a [routerLink]="['/articles', article.slug, 'edit']"
+                class="btn btn-outline-secondary btn-sm">
+                <i class="ion-edit"></i>
+                Edit Article
+              </a>
+              <button class="btn btn-outline-danger btn-sm"
+                (click)="deleteArticle()">
+                Delete Article
+              </button>
+            </span>
+          }
+          @if (!(isAuthor$ | async)) {
+            <rw-follow [isFollowed]="article.author.following" [username]="article.author.username" (follow)="onFollow()"></rw-follow>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <div class="container page">
+    @if (isLoading$ | async) {
+      <rw-loading></rw-loading>
+    }
+    @if (error$ | async) {
+      <rw-error-message></rw-error-message>
+    }
+    @if (article) {
+      <div class="row article-content">
+        <div class="col-xs-12">
+          <div>
+            <p>{{ article.body }}</p>
+          </div>
+          <rw-tag-list [tags]="article.tagList"></rw-tag-list>
+        </div>
+      </div>
+    }
+  </div>
+  @if (article) {
+    <div class="container">
+      <hr>
+        <div class="article-actions">
+          <div class="article-meta">
+            <a [routerLink]="['/profiles', article.author.username]">
+              <img [src]="article.author.image"/>
             </a>
             <div class="info">
-                <a [routerLink]="['/profiles', article.author.username]">
-                    {{ article.author.username }}
-                </a>
-                <span class="date">
-                    {{ article.createdAt }}
-                </span>
+              <a [routerLink]="['/profiles', article.author.username]">
+                {{ article.author.username }}
+              </a>
+              <span class="date">
+                {{ article.createdAt }}
+              </span>
             </div>
-            <span *ngIf="isAuthor$ | async">
+            @if (isAuthor$ | async) {
+              <span>
                 <a [routerLink]="['/articles', article.slug, 'edit']"
-                class="btn btn-outline-secondary btn-sm">
-                    <i class="ion-edit"></i>
-                    Edit Article
+                  class="btn btn-outline-secondary btn-sm">
+                  <i class="ion-edit"></i>
+                  Edit Article
                 </a>
                 <button class="btn btn-outline-danger btn-sm"
-                (click)="deleteArticle()">
-                    Delete Article
+                  (click)="deleteArticle()">
+                  Delete Article
                 </button>
-            </span>
-            <rw-follow [isFollowed]="article.author.following" [username]="article.author.username" *ngIf="!(isAuthor$ | async)" (follow)="onFollow()"></rw-follow>     
+              </span>
+            }
+            @if (!(isAuthor$ | async)) {
+              <rw-follow [isFollowed]="article.author.following" [username]="article.author.username" (follow)="onFollow()"></rw-follow>
+            }
+          </div>
         </div>
-    </div>
         <rw-comments [slug]="article.slug"></rw-comments>
-    </div>
-</div>
+      </div>
+    }
+  </div>

@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component } from "@angular/core";
 
 import { FeedComponent } from "../../../shared/modules/feed/components/feed/feed.component";
@@ -9,12 +9,11 @@ import { FeedTogglerComponent } from "../../../shared/modules/feedToggler/compon
 @Component({
     standalone: true,
     imports: [
-        CommonModule, 
-        FeedComponent, 
-        BannerComponent, 
-        PopularTagsComponent,
-        FeedTogglerComponent
-    ],
+    FeedComponent,
+    BannerComponent,
+    PopularTagsComponent,
+    FeedTogglerComponent
+],
     selector: 'rw-yourFeed',
     templateUrl: './yourFeed.component.html',
     styleUrls: ['./yourFeed.component.scss']

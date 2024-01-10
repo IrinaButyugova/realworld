@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 
@@ -9,9 +9,9 @@ import { BackendErrorMessagesComponent } from "../../../backendErrorMessages/com
 @Component({
     standalone: true,
     imports: [
-        CommonModule, 
-        ReactiveFormsModule, 
-        BackendErrorMessagesComponent],
+    ReactiveFormsModule,
+    BackendErrorMessagesComponent
+],
     selector: 'rw-article-form',
     templateUrl: './articleForm.component.html'
 })

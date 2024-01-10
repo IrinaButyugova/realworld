@@ -1,9 +1,9 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, Input } from "@angular/core";
 
 @Component({
     standalone: true,
-    imports: [CommonModule],
+    imports: [],
     selector: 'rw-error-message',
     templateUrl: './errorMessage.component.html',
     styleUrls: ['./errorMessage.component.scss']

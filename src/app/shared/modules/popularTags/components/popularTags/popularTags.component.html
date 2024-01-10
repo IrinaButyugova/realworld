@@ -1,14 +1,20 @@
-<rw-loading *ngIf="isLoading$ | async"></rw-loading>
-<rw-error-message *ngIf="error$ | async"></rw-error-message>
-
-<div class="sidebar" *ngIf="popularTags$ | async">
+@if (isLoading$ | async) {
+  <rw-loading></rw-loading>
+}
+@if (error$ | async) {
+  <rw-error-message></rw-error-message>
+}
+@if (popularTags$ | async) {
+  <div class="sidebar">
     <p>Popular Tags</p>
     <div class="tag-list">
-        <a *ngFor="let popularTag of popularTags$ | async"
-        [routerLink]="['/tags', popularTag]"
-        class="tag-default tag-pill">
-            {{ popularTag }}
+      @for (popularTag of popularTags$ | async; track popularTag) {
+        <a
+          [routerLink]="['/tags', popularTag]"
+          class="tag-default tag-pill">
+          {{ popularTag }}
         </a>
+      }
     </div>
-
-</div>
+  </div>
+}

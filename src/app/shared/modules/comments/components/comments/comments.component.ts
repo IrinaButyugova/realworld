@@ -29,7 +29,7 @@ export class CommentsComponent implements OnInit{
 
     isLoggedIn$!: Observable<boolean>;
     currentUser$!: Observable<CurrentUserInterface | null>;
-    comments$!: Observable<CommentInterface[]>;
+    comments$!: Observable<CommentInterface[] | null>;
     comment: string = '';
 
     constructor(private store: Store){

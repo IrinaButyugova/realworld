@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 
@@ -10,12 +10,11 @@ import { FeedTogglerComponent } from "../../../shared/modules/feedToggler/compon
 @Component({
     standalone: true,
     imports: [
-        CommonModule, 
-        FeedComponent, 
-        BannerComponent, 
-        PopularTagsComponent,
-        FeedTogglerComponent
-    ],
+    FeedComponent,
+    BannerComponent,
+    PopularTagsComponent,
+    FeedTogglerComponent
+],
     selector: 'rw-tagFeed',
     templateUrl: './tagFeed.component.html',
     styleUrls: ['./tagFeed.component.scss']

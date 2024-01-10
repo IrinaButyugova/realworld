@@ -1,8 +1,9 @@
 <div class="row">
-    <div class="col-xs-12 col-md-8 offset-md-2">
-      <form class="card comment-form" *ngIf="isLoggedIn$ | async">
+  <div class="col-xs-12 col-md-8 offset-md-2">
+    @if (isLoggedIn$ | async) {
+      <form class="card comment-form">
         <div class="card-block">
-          <textarea class="form-control" placeholder="Write a comment..." rows="3" 
+          <textarea class="form-control" placeholder="Write a comment..." rows="3"
           [(ngModel)]="comment" name="comment"></textarea>
         </div>
         <div class="card-footer">
@@ -10,40 +11,44 @@
           <button class="btn btn-sm btn-primary" (click)="postComment()">Post Comment</button>
         </div>
       </form>
-      <p *ngIf="!(isLoggedIn$ | async)">
+    }
+    @if (!(isLoggedIn$ | async)) {
+      <p>
         <a [routerLink]="['/login']">
-            Sign In
+          Sign In
         </a>
         or
         <a [routerLink]="['/register']">
-            Sign Up
+          Sign Up
         </a>
         to add comments on this article.
       </p>
-    </div>
+    }
+  </div>
 </div>
-
-<div class="row" *ngFor="let comment of(comments$ | async)">
-  <div class="col-xs-12 col-md-8 offset-md-2">
-    <div class="card">
-      <div class="card-block">
-        <p class="card-text">
-          {{ comment.body }}
-        </p>
-      </div>
-      <div class="card-footer">
-        <a [routerLink]="['/profiles', comment.author.username]" class="comment-author">
-          <img [src]="comment.author.image" class="comment-author-img" />
-        </a>
-        &nbsp;
-        <a [routerLink]="['/profiles', comment.author.username]" class="comment-author">
-          {{ comment.author.username }}
-        </a>
-        <span class="date-posted">{{ comment.createdAt}}</span>
-        <span class="mod-options">
-          <i class="ion-trash-a" (click)="deleteComment(comment.id)"></i>
-        </span>
+@for (comment of comments$ | async; track comment) {
+  <div class="row">
+    <div class="col-xs-12 col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-block">
+          <p class="card-text">
+            {{ comment.body }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <a [routerLink]="['/profiles', comment.author.username]" class="comment-author">
+            <img [src]="comment.author.image" class="comment-author-img" />
+          </a>
+          &nbsp;
+          <a [routerLink]="['/profiles', comment.author.username]" class="comment-author">
+            {{ comment.author.username }}
+          </a>
+          <span class="date-posted">{{ comment.createdAt}}</span>
+          <span class="mod-options">
+            <i class="ion-trash-a" (click)="deleteComment(comment.id)"></i>
+          </span>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}

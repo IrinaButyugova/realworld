@@ -1,3 +1,5 @@
-<ul class="error-messages" *ngFor="let errorMessage of errorMessages">
+@for (errorMessage of errorMessages; track errorMessage) {
+  <ul class="error-messages">
     <li>{{ errorMessage }}</li>
-</ul>
+  </ul>
+}
