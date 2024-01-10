@@ -7,7 +7,7 @@ import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 
 import { routes } from './app.routes';
 import { reducers } from './auth/store/reducers';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { RegisterEffect } from './auth/store/effects/register.effect';
 import { AuthService } from './auth/store/services/auth.service';
@@ -84,7 +84,7 @@ export const appConfig: ApplicationConfig = {
       connectInZone: true
     }),
     provideRouterStore(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
     AuthService,
     PersistanceService,
     {
